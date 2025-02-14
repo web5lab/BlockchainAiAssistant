@@ -5,6 +5,7 @@ import TokenDeployment from "@/components/TokenDeployment";
 import WalletConnect from "@/components/WalletConnect";
 import NetworkSelector from "@/components/NetworkSelector";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import BlockchainStats from "@/components/BlockchainStats";
 import { RiRobot2Line } from "react-icons/ri";
 import { SiEthereum } from "react-icons/si";
 import { motion } from "framer-motion";
@@ -53,6 +54,8 @@ export default function Home() {
             <p className="text-orange-600/60 mt-1">Your smart companion for blockchain development</p>
           </div>
         </motion.div>
+
+        <BlockchainStats />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           <motion.div 

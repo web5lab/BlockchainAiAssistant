@@ -73,6 +73,51 @@ export default function AnimatedBackground() {
           }}
         />
       ))}
+
+      {/* Block mining animation */}
+      {[...Array(3)].map((_, i) => (
+        <motion.div
+          key={`block-${i}`}
+          className="absolute"
+          initial={{
+            opacity: 0,
+            scale: 0.5,
+            x: window.innerWidth * 0.2 + (i * window.innerWidth * 0.3),
+            y: window.innerHeight,
+          }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0.5, 1, 0.5],
+            y: [window.innerHeight, window.innerHeight * 0.3, -100],
+          }}
+          transition={{
+            duration: 8,
+            delay: i * 3,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          <div className="relative">
+            <div className="w-16 h-16 bg-orange-400/10 backdrop-blur-sm rounded-lg border border-orange-300/30 rotate-45">
+              <div className="absolute inset-0 flex items-center justify-center -rotate-45">
+                <span className="text-xs font-mono text-orange-600/40">BLOCK</span>
+              </div>
+            </div>
+            <motion.div
+              className="absolute inset-0 bg-orange-400/20 rounded-lg"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 }
