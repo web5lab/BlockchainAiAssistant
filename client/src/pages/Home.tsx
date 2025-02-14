@@ -4,17 +4,15 @@ import Chat from "@/components/Chat";
 import TokenDeployment from "@/components/TokenDeployment";
 import WalletConnect from "@/components/WalletConnect";
 import NetworkSelector from "@/components/NetworkSelector";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import { RiRobot2Line } from "react-icons/ri";
+import { SiEthereum } from "react-icons/si";
 import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 p-4 md:p-8 relative overflow-hidden">
-      {/* Animated background patterns */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-[500px] h-[500px] rounded-full bg-orange-200/20 blur-3xl -top-48 -right-48 animate-pulse" />
-        <div className="absolute w-[300px] h-[300px] rounded-full bg-orange-300/20 blur-2xl -bottom-24 -left-24 animate-pulse delay-1000" />
-      </div>
+      <AnimatedBackground />
 
       <div className="max-w-6xl mx-auto relative">
         <motion.div 
@@ -26,11 +24,32 @@ export default function Home() {
           <div className="relative">
             <RiRobot2Line className="w-16 h-16 text-orange-400 animate-bounce" />
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse" />
+            <motion.div
+              className="absolute -z-10 w-20 h-20 border-2 border-orange-200 rounded-xl"
+              animate={{
+                rotate: 360,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
           </div>
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
-              Blockchain AI Assistant
-            </h1>
+            <div className="relative">
+              <motion.div
+                className="absolute -left-2 -top-2 text-4xl text-orange-400/20"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              >
+                <SiEthereum />
+              </motion.div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
+                Blockchain AI Assistant
+              </h1>
+            </div>
             <p className="text-orange-600/60 mt-1">Your smart companion for blockchain development</p>
           </div>
         </motion.div>
@@ -56,7 +75,19 @@ export default function Home() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <Card className="backdrop-blur-xl bg-white/70 border-orange-100 shadow-xl">
+            <Card className="backdrop-blur-xl bg-white/70 border-orange-100 shadow-xl relative overflow-hidden">
+              <motion.div
+                className="absolute -right-20 -top-20 w-40 h-40 bg-orange-200/20 rounded-full blur-3xl"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.2, 0.3],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
               <CardContent className="p-6">
                 <Tabs defaultValue="chat" className="w-full">
                   <TabsList className="w-full justify-start mb-6 bg-orange-50/50">
