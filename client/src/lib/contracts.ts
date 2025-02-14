@@ -28,20 +28,23 @@ export async function deployERC20({ name, symbol, initialSupply }: {
 }) {
   const provider = getProvider();
   const signer = await provider.getSigner();
-  
+
   const factory = new ethers.ContractFactory(
     ERC20_ABI,
     ERC20_BYTECODE,
     signer
   );
-  
+
   const contract = await factory.deploy(
     name,
     symbol,
     ethers.parseUnits(initialSupply, 18)
   );
-  
-  return await contract.deployTransaction.wait();
+
+  const deployment = await contract.waitForDeployment();
+  return { 
+    contractAddress: await deployment.getAddress()
+  };
 }
 
 export async function deployERC721({ name, symbol, baseURI }: {
@@ -51,15 +54,18 @@ export async function deployERC721({ name, symbol, baseURI }: {
 }) {
   const provider = getProvider();
   const signer = await provider.getSigner();
-  
+
   const factory = new ethers.ContractFactory(
     ERC721_ABI,
     ERC721_BYTECODE,
     signer
   );
-  
+
   const contract = await factory.deploy(name, symbol, baseURI);
-  return await contract.deployTransaction.wait();
+  const deployment = await contract.waitForDeployment();
+  return { 
+    contractAddress: await deployment.getAddress()
+  };
 }
 
 // Simplified bytecode for example purposes
